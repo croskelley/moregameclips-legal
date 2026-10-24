@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<title>Sign-in code</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+<h1>Sign-in code</h1>
+<p class="meta">moregameclips · this page sends nothing anywhere; it only shows what the platform returned</p>
+<p id="result">No code in this address.</p>
+<nav><a href="privacy.html">Privacy Policy</a></nav>
+</main>
+<script>
+  const q = new URLSearchParams(location.search);
+  const out = document.getElementById('result');
+  if (q.get('code')) {
+    out.textContent = '';
+    out.append('Copy this whole address back into whopwhop: ');
+    const c = document.createElement('code');
+    c.textContent = location.href;
+    out.append(c);
+  } else if (q.get('error')) {
+    out.textContent = 'The platform refused: ' + q.get('error') + (q.get('error_description') ? ' (' + q.get('error_description') + ')' : '');
+  }
+</script>
+</body>
+</html>
